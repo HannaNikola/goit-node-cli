@@ -9,7 +9,7 @@ const contactsPath = path.join(__dirname, "contacts.json");
 async function listContacts() {
    
     const data = await fs.readFile(contactsPath, { encoding: "utf-8" });
-    console.log(data, typeof data)
+   
   return JSON.parse(data);
 }
 
@@ -19,7 +19,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
     const allContacts = await listContacts();
-    const contact = allContacts.find((contact) => contact.contactId === contactId);
+    const contact = allContacts.find((contact) => contact.id === contactId);
     return contact;
 }
 
@@ -34,7 +34,7 @@ async function removeContact(contactId) {
     
     const deleteContact = allContacts[index];
     allContacts.splice(index, 1);
-    await fs.writeFile(contactsPath, JSON.stringify(allContacts));
+    await fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
     return deleteContact;
      
 }

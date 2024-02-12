@@ -1,4 +1,6 @@
 const { program } = require("commander");
+
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -9,7 +11,7 @@ program
 program.parse(process.argv);
 
 const options = program.opts();
-const contacts = require("./contacts");
+const contacts = require("./db/contacts.json");
 
 
 contacts.listContacts().then().catch();
@@ -23,25 +25,25 @@ async function invokeAction({ action, id, name, email, phone }) {
       case "list":
     
       const contacts = await contacts.getAll();
-     
+      console.log(contacts);
       break;
 
     case "get":
      
       const contact = await contacts.getAll(id);
-      
+      console.log(contact)
       break;
 
     case "add":
      
       const newContact = await contacts.create({ name, email, phone });
-      
+      console.log(newContact)
       break;
 
     case "remove":
-      // ... id
+     
       const removeContact = await removeContact(id);
-    
+      console.log(removeContact);
       break;
 
     default:
