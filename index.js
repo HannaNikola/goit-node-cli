@@ -12,7 +12,7 @@ program.parse(process.argv);
 
 const options = program.opts();
 
-const argContacts = require("./db/contacts.json");
+
 
 const contacts = require("./contacts.js");
 

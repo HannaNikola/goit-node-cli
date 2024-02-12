@@ -1,9 +1,9 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const crypto = require("node:crypto");
-const { requestToBodyStream } = require("next/dist/server/body-streams");
+// const { requestToBodyStream } = require("next/dist/server/body-streams");
 
-const contactsPath = path.join(__dirname, "contacts.json");
+const contactsPath = path.join(__dirname, "./db/contacts.json");
 
 
 async function listContacts() {
