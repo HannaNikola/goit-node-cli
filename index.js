@@ -11,39 +11,37 @@ program
 program.parse(process.argv);
 
 const options = program.opts();
-const contacts = require("./db/contacts.json");
 
+const argContacts = require("./db/contacts.json");
 
-contacts.listContacts().then().catch();
-contacts.getContactById().then().catch();
-contacts.addContact().then().catch();
-contacts.removeContact().then().catch();
+const contacts = require("./contacts.js");
+
 
 // // TODO: рефакторити
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
       case "list":
     
-      const contacts = await contacts.getAll();
-      console.log(contacts);
+      const contactsList = await contacts.listContacts();
+      console.table(contactsList);
       break;
 
     case "get":
      
-      const contact = await contacts.getAll(id);
-      console.log(contact)
+      const getContact = await contacts.getContactById(id);
+      console.log(getContact);
       break;
 
     case "add":
      
-      const newContact = await contacts.create({ name, email, phone });
+      const newContact = await contacts.addContact({ name, email, phone });
       console.log(newContact)
       break;
 
     case "remove":
      
-      const removeContact = await removeContact(id);
-      console.log(removeContact);
+      const removeId = await contacts.removeContact(id);
+      console.log(removeId);
       break;
 
     default:
